@@ -1,0 +1,17 @@
+[
+  {
+    "catId": "5ec9affd09187d6c5f768eb4",
+    "index": 0,
+    "name": "Bom Dia"
+  },
+  {
+    "catId": "5ec9affd06a97e710676da37",
+    "index": 1,
+    "name": "Boa Tarde"
+  },
+  {
+    "catId": "5ec9affd6388a9e6b87730a5",
+    "index": 2,
+    "name": "Boa Noite"
+  }
+]

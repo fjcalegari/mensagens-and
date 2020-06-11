@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AppOne</string>
+
+    <string name="base_app_lbl">AppOne</string>
+</resources>
