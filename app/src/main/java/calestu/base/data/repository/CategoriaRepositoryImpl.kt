@@ -22,9 +22,7 @@ class CategoriaRepositoryImpl @Inject constructor(
             val localTasks = categoriaLocalDataSource.getCategorias()
 
             (localTasks as? Success)?.let {
-                if (it.data.isEmpty()) {
-                    return@withContext Success(it.data)
-                }
+                return@withContext Success(it.data)
             }
 
             return@withContext Error(Exception("Illegal state"))

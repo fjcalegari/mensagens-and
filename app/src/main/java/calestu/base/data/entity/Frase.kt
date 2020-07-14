@@ -8,6 +8,8 @@ import androidx.room.PrimaryKey
 data class Frase(
     @PrimaryKey @ColumnInfo(name = "id") val id: String,
     val frase: String,
-    val autor: String? = ""
+    val titulo: String? = "",
+    val autor: String? = "",
+    val categoria: Int? = 0
 ) {
 }

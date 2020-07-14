@@ -22,7 +22,6 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardFrase"
-            style="@style/Widget.MyTheme.CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:isGone="@{viewmodel.dataLoading}"

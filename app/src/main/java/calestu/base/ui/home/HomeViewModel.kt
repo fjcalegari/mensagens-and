@@ -22,6 +22,10 @@ class HomeViewModel @Inject constructor(
     private val _frase = MutableLiveData<Frase>()
     val frase: LiveData<Frase> = _frase
 
+    init {
+        loadFrase()
+    }
+
     fun loadFrase() {
         _dataLoading.value = true
         viewModelScope.launch {

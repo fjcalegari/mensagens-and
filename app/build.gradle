@@ -12,14 +12,10 @@ android {
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary true
     }
     buildFeatures {
-        // Determines whether to generate a BuildConfig class.
         buildConfig = true
-        // Determines whether to support Data Binding.
-        // Note that the dataBinding.enabled property is now deprecated.
         dataBinding = true
     }
 
@@ -36,15 +32,18 @@ android {
     productFlavors {
         base {
             dimension = 'full'
+            buildConfigField "String", "TEMPLATE", "\"DEFAULT\""
         }
         appone {
             dimension = 'full'
             applicationId = 'calestu.appone'
+            buildConfigField "String", "TEMPLATE", "\"ONE\""
         }
         apptwo {
             dimension = 'full'
         }
     }
+
 //    sourceSets {
 //        appone {
 //            java {
@@ -52,11 +51,11 @@ android {
 //            }
 //        }
 //    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    // work-runtime-ktx 2.1.0 and above now requires Java 8
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -65,6 +64,7 @@ android {
 dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
+    implementation "androidx.fragment:fragment:$rootProject.fragmentVersion"
     implementation "androidx.fragment:fragment-ktx:$rootProject.fragmentKtxVersion"
     implementation "androidx.core:core-ktx:$rootProject.coreKtxVersion"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
@@ -76,17 +76,20 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
     implementation "androidx.annotation:annotation:$rootProject.androidXAnnotations"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
-    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
     implementation "androidx.legacy:legacy-support-v4:$rootProject.androidXLegacySupport"
-    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
 
     // Architecture Components
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+
+    implementation "androidx.paging:paging-runtime:$rootProject.pagingVersion"
+
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.archLifecycleVersion"
+
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
 
@@ -96,57 +99,10 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
 
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
     implementation "com.facebook.stetho:stetho:$rootProject.stethoVersion"
 
-    // Dependencies for local unit tests
-    testImplementation "junit:junit:$rootProject.junitVersion"
-    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
-    testImplementation "org.hamcrest:hamcrest-all:$rootProject.hamcrestVersion"
-    testImplementation "androidx.arch.core:core-testing:$rootProject.archTestingVersion"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutinesVersion"
-    testImplementation "org.robolectric:robolectric:$rootProject.robolectricVersion"
-    testImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
-    testImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
-    testImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
-    testImplementation "com.google.truth:truth:$rootProject.truthVersion"
-
-    // Dependencies for Android unit tests
-    androidTestImplementation "junit:junit:$rootProject.junitVersion"
-    androidTestImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
-    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$rootProject.dexMakerVersion"
-    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutinesVersion"
-
-    // AndroidX Test - JVM testing
-    testImplementation "androidx.test:core-ktx:$rootProject.androidXTestCoreVersion"
-    testImplementation "androidx.test.ext:junit-ktx:$rootProject.androidXTestExtKotlinRunnerVersion"
-    testImplementation "androidx.test:rules:$rootProject.androidXTestRulesVersion"
-    // Once https://issuetracker.google.com/127986458 is fixed this can be testImplementation
-    implementation "androidx.fragment:fragment-testing:$rootProject.fragmentVersion"
-    implementation "androidx.test:core:$rootProject.androidXTestCoreVersion"
-    implementation "androidx.fragment:fragment:$rootProject.fragmentVersion"
-
-    // AndroidX Test - Instrumented testing
-    androidTestImplementation "androidx.test:core-ktx:$rootProject.androidXTestCoreVersion"
-    androidTestImplementation "androidx.test.ext:junit-ktx:$rootProject.androidXTestExtKotlinRunnerVersion"
-    androidTestImplementation "androidx.test:rules:$rootProject.androidXTestRulesVersion"
-    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
-    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.archTestingVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$rootProject.espressoVersion"
-    androidTestImplementation "org.robolectric:annotations:$rootProject.robolectricVersion"
-    implementation "androidx.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
-
-    // Resolve conflicts between main and test APK:
-    androidTestImplementation "androidx.annotation:annotation:$rootProject.androidXAnnotations"
-    androidTestImplementation "androidx.legacy:legacy-support-v4:$rootProject.androidXLegacySupport"
-    androidTestImplementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
-    androidTestImplementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
-    androidTestImplementation "com.google.android.material:material:$rootProject.materialVersion"
-
-    // Using Dagger in androidTest and Robolectric too
-    kaptTest "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
-    kaptAndroidTest "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
 }

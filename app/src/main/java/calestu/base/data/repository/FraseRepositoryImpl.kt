@@ -20,6 +20,22 @@ class FraseRepositoryImpl @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : FraseRepository {
 
+    override suspend fun getFraseById(fraseId: String): Result<Frase> = withContext(ioDispatcher) {
+        return@withContext try {
+            Success(frasesDao.getFraseById(fraseId))
+        } catch (e: Exception) {
+            Error(e)
+        }
+    }
+
+    override suspend fun getFrases(): Result<List<Frase>> = withContext(ioDispatcher) {
+        return@withContext try {
+            Success(frasesDao.getFrases())
+        } catch (e: Exception) {
+            Error(e)
+        }
+    }
+
     override suspend fun getRandom(): Result<Frase> = withContext(ioDispatcher) {
         return@withContext try {
             val totalRows = frasesDao.getCount()

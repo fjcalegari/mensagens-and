@@ -28,6 +28,18 @@
             >
         </activity>
 
+        <activity
+            android:name=".ui.templates.two.TemplateTwoActivity"
+            android:theme="@style/Theme.MyApp"
+            >
+        </activity>
+
+        <activity
+            android:name=".ui.appone.AppOneActivity"
+            android:theme="@style/Theme.MyApp"
+            >
+        </activity>
+
     </application>
 
 </manifest>

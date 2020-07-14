@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frases_nav"
+    app:startDestination="@+id/frasesScreen">
+
+    <fragment
+        android:id="@+id/frasesScreen"
+        android:name="calestu.base.ui.frases.FrasesFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_frases">
+
+        <action
+            android:id="@+id/action_frasesScreen_to_fraseDetailScreen"
+            app:destination="@id/fraseDetailScreen"
+            />
+
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue="Frases"
+            app:nullable="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fraseDetailScreen"
+        android:name="calestu.base.ui.frasedetail.FraseDetailFragment"
+        android:label="@string/title_frase_detail"
+        tools:layout="@layout/fragment_frase_detail">
+
+        <argument
+            android:name="fraseId"
+            app:argType="string"
+            app:nullable="false" />
+
+    </fragment>
+
+</navigation>

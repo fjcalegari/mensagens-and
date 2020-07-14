@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">Base App</string>
 
-    <string name="base_app_lbl">Base App</string>
+    <string name="title_frases">Frases</string>
+    <string name="title_frase_detail">Frase</string>
+    <string name="title_categorias">Categorias</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Categorias</string>
+    <string name="title_notifications">Notifications</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

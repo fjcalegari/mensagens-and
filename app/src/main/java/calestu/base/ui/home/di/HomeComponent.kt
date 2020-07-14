@@ -1,10 +1,9 @@
 package calestu.base.ui.home.di
 
-import calestu.base.ui.header.di.HeaderModule
 import calestu.base.ui.home.HomeFragment
 import dagger.Subcomponent
 
-@Subcomponent(modules = [HomeModule::class, HeaderModule::class])
+@Subcomponent(modules = [HomeModule::class])
 interface HomeComponent {
 
     @Subcomponent.Factory

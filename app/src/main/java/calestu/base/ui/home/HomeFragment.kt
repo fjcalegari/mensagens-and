@@ -9,11 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import calestu.base.BaseApplication
-import calestu.base.BuildConfig
 import calestu.base.databinding.FragmentHomeBinding
-import calestu.base.ui.header.HeaderViewBinder
-import calestu.base.ui.header.HeaderViewModel
-import timber.log.Timber
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
@@ -44,12 +40,9 @@ class HomeFragment : Fragment() {
         return viewDataBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.loadFrase()
-
-        Timber.i("BuildConfig.FLAVOR: ${BuildConfig.FLAVOR}")
-        Timber.i("BuildConfig.APPLICATION_ID: ${BuildConfig.APPLICATION_ID}")
-    }
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        viewModel.loadFrase()
+//    }
 
 }
